@@ -33,10 +33,10 @@ def find_and_replace(file_, word, replacement):
 def setup():
     server_name = input("What is the server's name? ")
     os.chdir(server_dir)
-    bat_file = open(server_dir + "start.bat", "w")
+    bat_file = open(server_dir + "start.sh", "w")
     bat_file.write("java -Xmx2048M -Xms1024M -jar server.jar nogui")
     bat_file.close()
-    subprocess.call(server_dir + "start.bat")
+    subprocess.call(server_dir + "start.sh")
     find_and_replace(server_dir + "eula.txt", "false", "true")
     print("Agreed to EULA")
     try:
@@ -53,7 +53,7 @@ def setup():
 
     def ask_option():
         if answer_start == "start":
-            subprocess.call(server_dir + "start.bat")
+            subprocess.call(server_dir + "start.sh")
         elif answer_start == "conf":
             os_command_string = "notepad.exe server.properties"
             os.system(os_command_string)
@@ -101,6 +101,6 @@ else:
     if os.path.isdir("server/logs"):
         os.chdir(server_dir)
         print("World Exists, starting server....")
-        subprocess.call("start.bat")
+        subprocess.call("start.sh")
     else:
         setup()
